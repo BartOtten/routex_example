@@ -7,12 +7,13 @@
     <.live_title suffix=" · Phoenix Framework">
       <%= assigns[:page_title] || "Example" %>
     </.live_title>
-    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    <link phx-track-static rel="stylesheet" href={~o"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~o"/assets/app.js"}>
     </script>
   </head>
+
   <body class="bg-white antialiased">
-    <ul>
+    <ul class="gap-4 text-zinc-900 flex justify-end text-sm px-4 py-4 sm:px-6 lg:px-8">
       <%= if @current_user do %>
         <li>
           <%= @current_user.email %>
