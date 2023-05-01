@@ -1,15 +1,16 @@
-# fly.toml file generated for icy-snowflake-4422 on 2023-01-10T17:47:26+01:00
+# fly.toml file generated for routex on 2023-05-02T01:25:07+02:00
 
-app = "icy-snowflake-4422"
+app = "routex"
 kill_signal = "SIGTERM"
 kill_timeout = 5
+primary_region = "ams"
 processes = []
 
 [deploy]
   release_command = "/app/bin/migrate"
 
 [env]
-  PHX_HOST = "icy-snowflake-4422.fly.dev"
+  PHX_HOST = "routex.fly.dev"
   PORT = "8080"
 
 [experimental]
@@ -23,8 +24,8 @@ processes = []
   protocol = "tcp"
   script_checks = []
   [services.concurrency]
-    hard_limit = 25
-    soft_limit = 20
+    hard_limit = 1000
+    soft_limit = 1000
     type = "connections"
 
   [[services.ports]]
