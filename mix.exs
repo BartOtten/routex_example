@@ -52,7 +52,7 @@ defmodule Example.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:routex, ">= 0.0.0"}
+      routex_dep()
     ]
   end
 
@@ -70,5 +70,14 @@ defmodule Example.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
+  end
+
+  defp routex_dep() do
+    if path = System.get_env("ROUTEX_PATH") do
+      IO.puts(">> !! USING LOCAL ROUTEX PATH !! <<")
+      {:routex, path: path}
+    else
+      {:routex, ">= 0.0.0"}
+    end
   end
 end
