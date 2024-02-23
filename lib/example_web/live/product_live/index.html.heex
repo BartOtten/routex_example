@@ -27,6 +27,10 @@
   </:action>
 </.table>
 
+ <.link phx-click={JS.push("redirect")} data-confirm="You will be redirected to the root path of the current scope.">
+      <.button>Demonstrate auto scoped `redirect(socket, url(~p"/"))`</.button>
+ </.link>
+
 <.modal
   :if={@live_action in [:new, :edit]}
   id="product-modal"

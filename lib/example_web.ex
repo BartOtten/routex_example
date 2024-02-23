@@ -119,7 +119,8 @@ defmodule ExampleWeb do
       # Example when Routex.Extension.VerifiedRoutes is configured to use
       # sigil_p (~p). This will override the previous import, leaving the
       # sigil_p slot open for Routex.Extension.VerifiedRoutes
-      import Phoenix.VerifiedRoutes, except: [sigil_p: 2]
+      import Phoenix.VerifiedRoutes,
+        except: [sigil_p: 2, url: 1, url: 2, url: 3, path: 2, path: 3]
 
       import ExampleWeb.Router.RoutexHelpers
 
