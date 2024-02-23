@@ -17,6 +17,15 @@ defmodule ExampleWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/", ExampleWeb, host: "admin.", as: :admin do
+    pipe_through :browser
+
+    preprocess_using ExampleWeb.RoutexBackendAdmin do
+      live "/products/:id", ProductLive.Show, :show
+      live "/products/:id/show/edit", ProductLive.Show, :edit
+    end
+  end
+
   preprocess_using ExampleWeb.RoutexBackend do
     scope "/", ExampleWeb do
       pipe_through :browser
@@ -29,15 +38,6 @@ defmodule ExampleWeb.Router do
       live "/products/new", ProductLive.Index, :new
       live "/products/:id/edit", ProductLive.Index, :edit
 
-      live "/products/:id", ProductLive.Show, :show
-      live "/products/:id/show/edit", ProductLive.Show, :edit
-    end
-  end
-
-  scope "/", ExampleWeb, host: "admin.", as: :admin do
-    pipe_through :browser
-
-    preprocess_using ExampleWeb.RoutexBackendAdmin do
       live "/products/:id", ProductLive.Show, :show
       live "/products/:id/show/edit", ProductLive.Show, :edit
     end
