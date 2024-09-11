@@ -10,6 +10,9 @@ import Config
 config :example,
   ecto_repos: [Example.Repo]
 
+# Configure your database
+config :example, Example.Repo, database: "database.#{config_env()}.db"
+
 # Configures the endpoint
 config :example, ExampleWeb.Endpoint,
   url: [host: "localhost"],

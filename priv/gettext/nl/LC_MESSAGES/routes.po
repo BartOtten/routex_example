@@ -17,53 +17,70 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2;\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "confirm"
 msgstr "bevestig"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "confirm_email"
 msgstr "bevestig_email"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "edit"
 msgstr "bewerken"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "log_in"
 msgstr "aanmelden"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "log_out"
 msgstr "afmelden"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "new"
 msgstr "nieuw"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "products"
 msgstr "producten"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "register"
-msgstr "registreren"
+msgstr "registreer"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "reset_password"
-msgstr "herstel_wachtwoord"
+msgstr "wachtwoord_herstellen"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "resource"
+msgstr "bron"
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "settings"
 msgstr "instellingen"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "show"
 msgstr "toon"
 
 #: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
 msgid "users"
 msgstr "gebruikers"
