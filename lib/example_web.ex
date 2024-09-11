@@ -122,6 +122,8 @@ defmodule ExampleWeb do
       import Phoenix.VerifiedRoutes,
         except: [sigil_p: 2, url: 1, url: 2, url: 3, path: 2, path: 3]
 
+      # defmacro sigil_o(ast, some), do: nil
+
       import ExampleWeb.Router.RoutexHelpers
 
       # Uncomment the next two lines when using Phoenix Route Helpers

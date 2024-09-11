@@ -9,16 +9,11 @@
 msgid ""
 msgstr ""
 "Language: nl\n"
-"Plural-Forms: nplurals=2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/example_web/components/core_components.ex:448
 #, elixir-autogen, elixir-format
 msgid "Actions"
-msgstr ""
-
-#: lib/example_web/controllers/page_html/home.html.heex:49
-#, elixir-autogen, elixir-format
-msgid "Welcome to %{name}!"
 msgstr ""
 
 #: lib/example_web/components/core_components.ex:75

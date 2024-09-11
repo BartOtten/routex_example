@@ -26,10 +26,29 @@
     </.link>
   </:action>
 </.table>
+<hr class="mt-10 mb-10">
+<.header class="mb-5">Demo links</.header>
+<.link
+	class="mt-5"
+  phx-click={JS.push("redirect")}
+  data-confirm="You will be redirected to the root path of the current branch."
+>
+  <.button>Auto branch with `redirect(socket, url(~p"/"))`</.button>
+</.link>
 
- <.link phx-click={JS.push("redirect")} data-confirm="You will be redirected to the root path of the current scope.">
-      <.button>Demonstrate auto scoped `redirect(socket, url(~p"/"))`</.button>
- </.link>
+<.link navigate={~p"/europe/products/1"}
+		class="mt-5"
+ data-confirm="You will navigate to product '1' in branch 'europe'">
+  <.button>Fixed branch with `~p"/europe/products/1"`</.button>
+</.link>
+
+<.link navigate={~p"/products/#{1}"}
+		class="mt-5"
+ data-confirm="You will navigate to product '1' in the current branch">
+  <.button>Auto branch with `~p"/products/#{1}"`</.button>
+</.link>
+
+	<hr class="mt-10 mb-10">
 
 <.modal
   :if={@live_action in [:new, :edit]}

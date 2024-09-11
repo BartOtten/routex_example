@@ -11,12 +11,14 @@ defmodule ExampleWeb.RoutexBackend do
       Routex.Extension.Alternatives,
       Routex.Extension.Translations,
       # Routex.Extension.Cloak,
+      # Routex.Extension.Interpolation,
       Routex.Extension.AttrGetters,
       Routex.Extension.AlternativeGetters,
       Routex.Extension.VerifiedRoutes,
-      Routex.Extension.RouteHelpers,
+      # Routex.Extension.RouteHelpers,
       Routex.Extension.Assigns
     ],
+    alternatives_prefix: true,
     alternatives: %{
       "/" => %{
         attrs: %Attrs{name: "Worldwide", contact: "root@example.com"},

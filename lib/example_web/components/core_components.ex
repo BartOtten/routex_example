@@ -573,58 +573,59 @@ defmodule ExampleWeb.CoreComponents do
         </tbody>
       </table>
     </div>
-    <h3 class="font-bold">Automated Helpers</h3>
-    <p>As alternative routes are generated, the default Phoenix Route Helpers now
-      return values depending on the 'scope' the currently is in.</p>
-    <ul class="list-disc text-xs mt-2">
-      <li>
-        Routes.product_show_path(@socket, :show, 2) => <%= Routes.product_show_path(@socket, :show, 2) %>
-      </li>
-      <li>
-        Routes.product_show_url(@socket, :show, 3) => <%= Routes.product_show_url(@socket, :show, 3) %>
-      </li>
-      <li>
-        <.link class="underline" navigate={Routes.page_path(@socket, :home)}>
-          Go to homepage in current scope
-        </.link>
-      </li>
-    </ul>
-    <h3 class="font-bold mt-4">Static Helpers</h3>
-    <p>The helpers for alternative routes always return the same value. Below are the
-      helpers to link to a page in scope Europe/Netherlands.</p>
-    <ul class="list-disc text-xs mt-2">
-      <li>
-        Routes.product_show_europe_nl_path(@socket, :show, 2) => <%= Routes.product_show_europe_nl_path(
-          @socket,
-          :show,
-          2
-        ) %>
-      </li>
-      <li>
-        Routes.product_show_europe_nl_url(@socket, :show, 3) => <%= Routes.product_show_europe_nl_url(
-          @socket,
-          :show,
-          3
-        ) %>
-      </li>
-    </ul>
-    <h3 class="font-bold mt-4">Alternatives</h3>
-    <p class="mb-2">The extension AlternativeGetters makes it easy to link to
-      alternative pages.</p>
-    <!-- alternatives/1 is imported from ExampleWeb.Router.RoutexHelpers -->
-    <.link
-      :for={alternative <- Routes.alternatives(@url)}
-      class="button"
-      rel="alternate"
-      hreflang={alternative.attrs.locale}
-      navigate={alternative.slug}
-    >
-      <.button class={(alternative.attrs.scope_helper == @loc.scope_helper && "bg-[#FD4F00]") || ""}>
-        <%= alternative.attrs.assigns.loc.name %>
-      </.button>
-    </.link>
     """
   end
+
+  # <h3 class="font-bold">Automated Helpers</h3>
+  # <p>As alternative routes are generated, the default Phoenix Route Helpers now
+  #   return values depending on the 'scope' the currently is in.</p>
+  # <ul class="list-disc text-xs mt-2">
+  #   <li>
+  #     Routes.product_show_path(@socket, :show, 2) => <%= Routes.product_show_path(@socket, :show, 2) %>
+  #   </li>
+  #   <li>
+  #     Routes.product_show_url(@socket, :show, 3) => <%= Routes.product_show_url(@socket, :show, 3) %>
+  #   </li>
+  #   <li>
+  #     <.link class="underline" navigate={Routes.page_path(@socket, :home)}>
+  #       Go to homepage in current scope
+  #     </.link>
+  #   </li>
+  # </ul>
+  # <h3 class="font-bold mt-4">Static Helpers</h3>
+  # <p>The helpers for alternative routes always return the same value. Below are the
+  #   helpers to link to a page in scope Europe/Netherlands.</p>
+  # <ul class="list-disc text-xs mt-2">
+  #   <li>
+  #     Routes.product_show_europe_nl_path(@socket, :show, 2) => <%= Routes.product_show_europe_nl_path(
+  #       @socket,
+  #       :show,
+  #       2
+  #     ) %>
+  #   </li>
+  #   <li>
+  #     Routes.product_show_europe_nl_url(@socket, :show, 3) => <%= Routes.product_show_europe_nl_url(
+  #       @socket,
+  #       :show,
+  #       3
+  #     ) %>
+  #   </li>
+  # </ul>
+  # <h3 class="font-bold mt-4">Alternatives</h3>
+  # <p class="mb-2">The extension AlternativeGetters makes it easy to link to
+  #   alternative pages.</p>
+  # <!-- alternatives/1 is imported from ExampleWeb.Router.RoutexHelpers -->
+  # <.link
+  #   :for={alternative <- Routes.alternatives(@url)}
+  #   class="button"
+  #   rel="alternate"
+  #   hreflang={alternative.attrs.locale}
+  #   navigate={alternative.slug}
+  # >
+  #   <.button class={(alternative.attrs.scope_helper == @loc.scope_helper && "bg-[#FD4F00]") || ""}>
+  #     <%= alternative.attrs.assigns.loc.name %>
+  #   </.button>
+  # </.link>
 
   ## JS Commands
 
