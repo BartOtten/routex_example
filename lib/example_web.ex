@@ -61,7 +61,7 @@ defmodule ExampleWeb do
 
       unquote(html_helpers())
 
-      on_mount(ExampleWeb.Router.RoutexHelpers)
+      on_mount(unquote(__MODULE__).Router.RoutexHelpers)
     end
   end
 
@@ -119,10 +119,10 @@ defmodule ExampleWeb do
       import Phoenix.VerifiedRoutes,
         except: [sigil_p: 2, url: 1, url: 2, url: 3, path: 2, path: 3]
 
-      import ExampleWeb.Router.RoutexHelpers
+      import unquote(__MODULE__).Router.RoutexHelpers
       # Uncomment the next two lines when using Phoenix Route Helpers
-      alias ExampleWeb.Router.Helpers, as: OriginalRoutes
-      alias ExampleWeb.Router.RoutexHelpers, as: Routes
+      alias unquote(__MODULE__).Router.Helpers, as: OriginalRoutes
+      alias unquote(__MODULE__).Router.RoutexHelpers, as: Routes
     end
   end
 
