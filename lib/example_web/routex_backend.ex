@@ -10,22 +10,22 @@ defmodule ExampleWeb.RoutexBackend do
     extensions: [
       Routex.Extension.Alternatives,
       Routex.Extension.Translations,
-      # Routex.Extension.Cloak,
       # Routex.Extension.Interpolation,
+      # Routex.Extension.Cloak,
       Routex.Extension.AttrGetters,
       Routex.Extension.AlternativeGetters,
       Routex.Extension.VerifiedRoutes,
-      # Routex.Extension.RouteHelpers,
+      Routex.Extension.RouteHelpers,
       Routex.Extension.Assigns
     ],
     alternatives_prefix: true,
     alternatives: %{
       "/" => %{
         attrs: %Attrs{name: "Worldwide", contact: "root@example.com"},
-        scopes: %{
+        branches: %{
           "/europe" => %{
             attrs: %Attrs{name: "Europe", contact: "europe@example.com"},
-            scopes: %{
+            branches: %{
               "/nl" => %{
                 attrs: %Attrs{
                   name: "The Netherlands",
@@ -45,21 +45,23 @@ defmodule ExampleWeb.RoutexBackend do
     translations_backend: ExampleWeb.Gettext,
     cloak_character: ".",
     verified_sigil_routex: "~p",
-    verified_sigil_original: "~o",
-    assigns: %{namespace: :loc, attrs: [:scope_helper, :locale, :contact, :name]}
+    verified_sigil_phoenix: "~o",
+    verified_url_routex: :url,
+    verified_path_routex: :path,
+    assigns: %{namespace: :loc, attrs: [:branch_helper, :locale, :contact, :name]}
 end
 
 defmodule ExampleWeb.RoutexBackendAdmin do
   alias My.Attrs
 
   use Routex,
-    scopes: %{
+    branches: %{
       "/" => %{
         attrs: %Attrs{name: "Worldwide", contact: "root_admin@example.com"},
-        scopes: %{
+        branches: %{
           "/europe" => %{
             attrs: %Attrs{name: "Europe", contact: "europe_admin@example.com"},
-            scopes: %{
+            branches: %{
               "/nl" => %{
                 attrs: %Attrs{
                   name: "The Netherlands",

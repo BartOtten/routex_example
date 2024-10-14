@@ -33,10 +33,17 @@ defmodule ExampleWeb.ProductLive.Index do
   end
 
   @impl true
-  def handle_event("redirect", _, socket) do
+  def handle_event("redirect", %{"location" => "root"}, socket) do
     IO.puts(["Redirecting from `", url(~p"/products"), "` to `", url(~p"/"), "`"])
 
     {:noreply, redirect(socket, external: url(~p"/"))}
+  end
+
+  @impl true
+  def handle_event("redirect", %{"location" => "products"}, socket) do
+    IO.puts(["Redirecting from `", url(~p"/products"), "` to `", url(~p"/products"), "`"])
+
+    {:noreply, redirect(socket, external: url(~p"/products"))}
   end
 
   def handle_event("delete", %{"id" => id}, socket) do

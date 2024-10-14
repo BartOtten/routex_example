@@ -17,14 +17,14 @@ defmodule ExampleWeb.Router do
     plug :accepts, ["json"]
   end
 
-  # scope "/", ExampleWeb, host: "admin.", as: :admin do
-  #   pipe_through :browser
+  scope "/", ExampleWeb, host: "admin.", as: :admin do
+    pipe_through :browser
 
-  #   preprocess_using ExampleWeb.RoutexBackendAdmin do
-  #     live "/products/:id", ProductLive.Show, :show
-  #     live "/products/:id/show/edit", ProductLive.Show, :edit
-  #   end
-  # end
+    preprocess_using ExampleWeb.RoutexBackendAdmin do
+      live "/products/:id", ProductLive.Show, :show
+      live "/products/:id/show/edit", ProductLive.Show, :edit
+    end
+  end
 
   preprocess_using ExampleWeb.RoutexBackend do
     scope "/", ExampleWeb do
@@ -35,9 +35,8 @@ defmodule ExampleWeb.Router do
       resources "/resource", PageController, as: :resource
 
       live "/products", ProductLive.Index, :index
-
-      # live "/products/#{locale}/foo#{contact}", ProductLive.Index, :index,
-      #   private: %{rtx: %{alternatives_prefix: false}}
+      # live "/#{locale}/products/#{contact}", ProductLive.Index, :index,
+      #  private: %{rtx: %{alternatives_prefix: false}}
 
       live "/products/new", ProductLive.Index, :new
       live "/products/:id/edit", ProductLive.Index, :edit
