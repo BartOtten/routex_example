@@ -4,6 +4,14 @@ defmodule ExampleWeb.PageController do
   def home(conn, _params) do
     # The home page is often custom made,
     # so skip the default app layout.
-    render(conn, :home, layout: false)
+
+		url = current_url(conn)
+		attrs = ExampleWeb.Router.RoutexHelpers.attrs(url)
+		
+		conn
+		|> assign(:loc, attrs)
+		|> assign(:url, url)
+    |> render(:home, layout: false)
   end
 end
+

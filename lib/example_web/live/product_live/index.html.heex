@@ -1,13 +1,19 @@
+<!-- Using the code `@url && [some assignment]` causes Phoenix LiveView to update
+the dynamic links on `patch` (as used by Routex Debug component). When using `navigate`,
+this workaround is not necessary as the page is completely reloaded without diffing.
+This is normal LiveView behaviour and the reason why it is recommended to use `navigate`
+in links that change branch.-->
+
 <.header>
   Listing Products
   <:actions>
-    <.link patch={~p"/products/new"}>
+    <.link patch={@url && ~p"/products/new"}>
       <.button>New Product</.button>
     </.link>
   </:actions>
 </.header>
 
-<.table id="products" rows={@products} row_click={&JS.navigate(~p"/products/#{&1}")}>
+<.table id="products" rows={@url && @products} row_click={&JS.navigate(~p"/products/#{&1}")}>
   <:col :let={product} label="Name">
     <%= product.name %>
   </:col>
@@ -26,29 +32,93 @@
     </.link>
   </:action>
 </.table>
-<hr class="mt-10 mb-10">
-<.header class="mb-5">Demo links</.header>
+
+<.routex_debug url={@url} loc={@loc}/>
+
+<hr class="mt-10 mb-10" />
+<.header class="mb-5">Verified Routes</.header>
+<p>Routex is fully compatible with Verified Routes</p>
+<table class="text-xs">
+	<thead class="font-bold"><tr><td class="pr-4">Type</td><td>Code</td><td>Converted to</td></tr></thead>
+	<tr><td>Auto</td><td class="pr-4">redirect(socket, url(~p"/"))</td><td>
 <.link
-	class="mt-5"
-  phx-click={JS.push("redirect")}
+  class="mt-5"
+  phx-click={JS.push("redirect", value: %{location: "root"})}
   data-confirm="You will be redirected to the root path of the current branch."
 >
-  <.button>Auto branch with `redirect(socket, url(~p"/"))`</.button>
+  <.button>try: redirect(socket, url(<%= @url &&  ~p"/" %>)</.button>
 </.link>
-
-<.link navigate={~p"/europe/products/1"}
-		class="mt-5"
- data-confirm="You will navigate to product '1' in branch 'europe'">
-  <.button>Fixed branch with `~p"/europe/products/1"`</.button>
+	</td></tr>
+	<tr><td>Auto</td><td class="pr-4">redirect(socket, url(~p"/products"))</td><td>
+<.link
+  class="mt-5"
+  phx-click={JS.push("redirect", value: %{location: "products"})}
+  data-confirm="You will be redirected to the product path of the current branch."
+>
+<.button>try: redirect(socket, url(<%= @url &&  ~p"/products" %>)</.button>
 </.link>
+	</td></tr>
+	<tr><td>Auto</td><td class="pr-4">~p"/products/1</td><td>
+<.link
+  patch={@url && ~p"/products/1"}
+  class="mt-5"
+  data-confirm="You will navigate to product '1' in the current branch"
+>
+ <.button>try: <%= @url && ~p"/products/1" %></.button>
+</.link></td></tr>
+<tr><td>Fixed</td><td class="pr-4">~p"/europe/products/1</td><td>
 
-<.link navigate={~p"/products/#{1}"}
-		class="mt-5"
- data-confirm="You will navigate to product '1' in the current branch">
-  <.button>Auto branch with `~p"/products/#{1}"`</.button>
+<.link
+  patch={@url && ~p"/europe/products/1"}
+  class="mt-5"
+  data-confirm="You will navigate to product '1' in branch 'europe'"
+>
+<.button>try: <%= @url && ~p"/europe/products/1" %></.button>
 </.link>
+</td></tr>
+	</table>
 
-	<hr class="mt-10 mb-10">
+<hr class="mt-10 mb-10" />
+
+  <h3 class="font-bold mt-8">Automated Helpers</h3>
+  <p>As alternative routes are generated, the default Phoenix Route Helpers now
+    return values depending on the current 'branch'.</p>
+		<table class="table-auto text-xs mt-2 mb-4">
+			<thead><tr><td class="font-bold">Code</td><td class="font-bold">Result</td></tr></thead>
+			<tbody>
+				<tr><td class="pr-4">Routes.product_show_path(@socket, :show, 2)</td><td><%= @url && Routes.product_show_path(@socket, :show, 2) %></td></tr>
+				<tr><td class="pr-4"> Routes.product_show_url(@socket, :show, 3)</td><td><%= @url && Routes.product_show_url(@socket, :show, 3) %></td></tr>
+			</tbody>
+			</table>
+      <.link navigate={@url && Routes.page_path(@socket, :home)}>
+        <.button>Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`</.button>
+      </.link>
+
+  <h3 class="font-bold mt-4">Static Helpers</h3>
+  <p>The helpers generated <strong>alternative</strong> routes always return a route in the associated branch. Below are the
+    helpers to link to a page in branch Europe/Netherlands.</p>
+		<table class=" text-xs mt-2">
+			<thead><tr><td class="font-bold">Code</td><td class="font-bold">Result</td></tr></thead>
+    <tr><td class="pr-4">
+      Routes.product_show_europe_nl_path(@socket, :show, 2) </td><td><%= @url && Routes.product_show_europe_nl_path(
+        @socket,
+        :show,
+        2
+      ) %>
+			</td></tr>
+		<tr>
+    <td class="pr-4">
+      Routes.product_show_europe_nl_url(@socket, :show, 3)</td><td><%= @url && Routes.product_show_europe_nl_url(
+        @socket,
+        :show,
+        3
+      ) %>
+    </td>
+		</tr>
+		</table>
+      <.link navigate={Routes.page_europe_path(@socket, :home)}>
+        <.button>Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`</.button>
+      </.link>
 
 <.modal
   :if={@live_action in [:new, :edit]}
