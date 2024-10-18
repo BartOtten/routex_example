@@ -537,21 +537,24 @@ defmodule ExampleWeb.CoreComponents do
     """
   end
 
-	@doc """
-	Renders a block with Routex assigns and links to alternatives/branches.
+  @doc """
+  Renders a block with Routex assigns and links to alternatives/branches.
 
-	Uses `patch` for navigation to demonstrate the dynamic nature of
-	Routex Routes. It does require 'diffing triggers' in template codes
-	so it's recommended to use `navigate` instead.
-	"""
+  Uses `patch` for navigation to demonstrate the dynamic nature of
+  Routex Routes. It does require 'diffing triggers' in template codes
+  so it's recommended to use `navigate` instead.
+  """
 
   require ExampleWeb.Router.RoutexHelpers
   alias ExampleWeb.Router.RoutexHelpers, as: Routes
 
-	attr :loc, :any
-	attr :url, :any
+  attr :url, :any
 
   def routex_debug(assigns) do
+
+		attrs = Routes.attrs(assigns.url)
+		assigns = Phoenix.Component.assign(assigns, attrs.assigns)
+
     ~H"""
     <div style="margin-top: 3rem">
       <table class="table-auto">
@@ -594,16 +597,14 @@ defmodule ExampleWeb.CoreComponents do
         hreflang={alternative.attrs.locale}
         patch={alternative.slug}
       >
-        <.button class={
-          (alternative.attrs.branch_helper == @loc.branch_helper && "bg-[#FD4F00]") || ""
-        }>
+        <.button class={(alternative.is_current? && "bg-[#FD4F00]") || ""}>
           <%= alternative.attrs.assigns.loc.name %>
         </.button>
       </.link>
     </div>
- 
-  """
+    """
   end
+
   ## JS Commands
 
   def show(js \\ %JS{}, selector) do

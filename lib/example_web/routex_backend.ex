@@ -6,7 +6,7 @@ end
 defmodule ExampleWeb.RoutexBackend do
   alias My.Attrs
 
-  use Routex,
+  use Routex.Backend,
     extensions: [
       Routex.Extension.Alternatives,
       Routex.Extension.Translations,
@@ -54,7 +54,7 @@ end
 defmodule ExampleWeb.RoutexBackendAdmin do
   alias My.Attrs
 
-  use Routex,
+  use Routex.Backend,
     branches: %{
       "/" => %{
         attrs: %Attrs{name: "Worldwide", contact: "root_admin@example.com"},

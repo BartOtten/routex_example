@@ -119,10 +119,11 @@ defmodule ExampleWeb do
       import Phoenix.VerifiedRoutes,
         except: [sigil_p: 2, url: 1, url: 2, url: 3, path: 2, path: 3]
 
-      import unquote(__MODULE__).Router.RoutexHelpers
-      # Uncomment the next two lines when using Phoenix Route Helpers
-      alias unquote(__MODULE__).Router.Helpers, as: OriginalRoutes
+      import unquote(__MODULE__).Router.RoutexHelpers, only: :macros
       alias unquote(__MODULE__).Router.RoutexHelpers, as: Routes
+
+      # Uncomment the next line when also using the original Phoenix Route Helpers
+      # alias unquote(__MODULE__).Router.Helpers, as: OriginalRoutes
     end
   end
 
