@@ -1,0 +1,77 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "confirm"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "confirm_email"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "edit"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "log_in"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "log_out"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "new"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "products"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "register"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "reset_password"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "resource"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "settings"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "show"
+msgstr ""
+
+#: lib/example_web/router.ex:1
+#, elixir-autogen, elixir-format
+msgid "users"
+msgstr ""
