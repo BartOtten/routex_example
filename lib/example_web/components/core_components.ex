@@ -551,9 +551,8 @@ defmodule ExampleWeb.CoreComponents do
   attr :url, :any
 
   def routex_debug(assigns) do
-
-		attrs = Routes.attrs(assigns.url)
-		assigns = Phoenix.Component.assign(assigns, attrs.assigns)
+    attrs = Routes.attrs(assigns.url)
+    assigns = Phoenix.Component.assign(assigns, attrs.assigns)
 
     ~H"""
     <div style="margin-top: 3rem">
@@ -597,7 +596,7 @@ defmodule ExampleWeb.CoreComponents do
         hreflang={alternative.attrs.locale}
         patch={alternative.slug}
       >
-        <.button class={(alternative.is_current? && "bg-[#FD4F00]") || ""}>
+        <.button class={(alternative.match? && "bg-[#FD4F00]") || ""}>
           <%= alternative.attrs.assigns.loc.name %>
         </.button>
       </.link>
