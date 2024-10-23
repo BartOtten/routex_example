@@ -7,6 +7,8 @@ defmodule Example.Application do
 
   @impl true
   def start(_type, _args) do
+    Example.Release.migrate()
+
     children = [
       # Start the Telemetry supervisor
       ExampleWeb.Telemetry,
