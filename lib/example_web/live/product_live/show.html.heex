@@ -10,7 +10,7 @@
 
 <.list>
   <:item title="Name"><%= @product.name %></:item>
-  <:item title="Price"><%= @product.price %></:item>
+  <:item title="Price"><%= @product.price * (1 - @loc.discount) %></:item>
 </.list>
 
 <.back navigate={~p"/products"}>Back to products</.back>

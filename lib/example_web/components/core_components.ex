@@ -577,10 +577,6 @@ defmodule ExampleWeb.CoreComponents do
             <td><%= @loc.contact %></td>
           </tr>
           <tr>
-            <td>Helper:</td>
-            <td><%= @loc.branch_helper || "nil" %></td>
-          </tr>
-          <tr>
             <td>&nbsp;</td>
           </tr>
         </tbody>
