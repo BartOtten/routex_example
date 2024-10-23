@@ -17,7 +17,7 @@ in links that change branch.-->
     <%= product.name %>
   </:col>
   <:col :let={product} label="Price">
-    <%= product.price %>
+    <%= product.price * (1 - @loc.discount) %>
   </:col>
   <:action :let={product}>
     <div class="sr-only">

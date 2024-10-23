@@ -12,8 +12,9 @@ processes = []
 
 [env]
   PHX_HOST = "routex.fly.dev"
+  PHX_SERVER = true
   PORT = "8080"
-  DATABASE_PATH = "/var/routex.db"
+  DATABASE_PATH = "/tmp/routex.db"
 
 [experimental]
   allowed_public_ports = []
