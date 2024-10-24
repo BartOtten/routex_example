@@ -569,6 +569,10 @@ defmodule ExampleWeb.CoreComponents do
             <td><%= @loc.locale %></td>
           </tr>
           <tr>
+            <td class="text-left w-48">Language:</td>
+            <td><%= @loc.language %></td>
+          </tr>
+          <tr>
             <td>Audience:</td>
             <td><%= @loc.name %></td>
           </tr>
@@ -593,7 +597,7 @@ defmodule ExampleWeb.CoreComponents do
         patch={alternative.slug}
       >
         <.button class={(alternative.match? && "bg-[#FD4F00]") || ""}>
-          <%= alternative.attrs.assigns.loc.name %>
+          <%= alternative.attrs.name %>
         </.button>
       </.link>
     </div>

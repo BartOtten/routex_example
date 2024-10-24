@@ -1,6 +1,6 @@
 defmodule My.Attrs do
   @moduledoc false
-  defstruct [:contact, :name, locale: "en", discount: 0]
+  defstruct [:contact, :name, locale: "en-US", language: "en", discount: 0]
 end
 
 defmodule ExampleWeb.RoutexBackend do
@@ -24,22 +24,23 @@ defmodule ExampleWeb.RoutexBackend do
         attrs: %Attrs{name: "Worldwide", contact: "root@example.com", discount: 0.02},
         branches: %{
           "/europe" => %{
-            attrs: %Attrs{name: "Europe", contact: "europe@example.com", discount: 0.16},
+            attrs: %Attrs{name: "Europe", locale: "en_150", contact: "europe@example.com", discount: 0.16},
             branches: %{
               "/nl" => %{
                 attrs: %Attrs{
                   name: "The Netherlands",
-                  locale: "nl",
+                  locale: "nl-NL",
+                  language: "nl",
                   contact: "verkoop@example.nl",
 									discount: 0.25
                 }
               },
               "/be" => %{
-                attrs: %Attrs{name: "Belgium", locale: "nl", contact: "handel@example.be", discount: 0.5}
+                attrs: %Attrs{name: "Belgium", locale: "nl-BE", language: "nl", contact: "handel@example.be", discount: 0.5}
               }
             }
           },
-          "/gb" => %{attrs: %Attrs{name: "Great Britain", contact: "sales@example.com", discount: 0.3}}
+          "/gb" => %{attrs: %Attrs{name: "Great Britain", locale: "en-GB", contact: "sales@example.com", discount: 0.3}}
         }
       }
     },
@@ -49,7 +50,7 @@ defmodule ExampleWeb.RoutexBackend do
     verified_sigil_phoenix: "~o",
     verified_url_routex: :url,
     verified_path_routex: :path,
-    assigns: %{namespace: :loc, attrs: [:discount, :locale, :contact, :name]}
+    assigns: %{namespace: :loc, attrs: [:discount, :locale, :language, :contact, :name]}
 end
 
 defmodule ExampleWeb.RoutexBackendAdmin do
