@@ -46,8 +46,9 @@ defmodule ExampleWeb.Router do
     end
   end
 
+  # Or using CLDR Extension, using 'posts` as route to avoid collisions with `products` from above
   preprocess_using ExampleWeb.RoutexCLDRBackend, alternatives_prefix: false do
-    scope "/#{territory}/cldr/", ExampleWeb do
+    scope "/#{territory}/cldr/", ExampleWeb, as: :cldr do
       pipe_through :browser
 
       get "/", PageController, :home
