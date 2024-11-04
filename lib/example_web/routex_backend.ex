@@ -24,7 +24,12 @@ defmodule ExampleWeb.RoutexBackend do
         attrs: %Attrs{name: "Worldwide", contact: "root@example.com", discount: 0.02},
         branches: %{
           "/europe" => %{
-            attrs: %Attrs{name: "Europe", locale: "en_150", contact: "europe@example.com", discount: 0.16},
+            attrs: %Attrs{
+              name: "Europe",
+              locale: "en_150",
+              contact: "europe@example.com",
+              discount: 0.16
+            },
             branches: %{
               "/nl" => %{
                 attrs: %Attrs{
@@ -32,15 +37,28 @@ defmodule ExampleWeb.RoutexBackend do
                   locale: "nl-NL",
                   language: "nl",
                   contact: "verkoop@example.nl",
-									discount: 0.25
+                  discount: 0.25
                 }
               },
               "/be" => %{
-                attrs: %Attrs{name: "Belgium", locale: "nl-BE", language: "nl", contact: "handel@example.be", discount: 0.5}
+                attrs: %Attrs{
+                  name: "Belgium",
+                  locale: "nl-BE",
+                  language: "nl",
+                  contact: "handel@example.be",
+                  discount: 0.5
+                }
               }
             }
           },
-          "/gb" => %{attrs: %Attrs{name: "Great Britain", locale: "en-GB", contact: "sales@example.com", discount: 0.3}}
+          "/gb" => %{
+            attrs: %Attrs{
+              name: "Great Britain",
+              locale: "en-GB",
+              contact: "sales@example.com",
+              discount: 0.3
+            }
+          }
         }
       }
     },
@@ -51,6 +69,41 @@ defmodule ExampleWeb.RoutexBackend do
     verified_url_routex: :url,
     verified_path_routex: :path,
     assigns: %{namespace: :loc, attrs: [:discount, :locale, :language, :contact, :name]}
+end
+
+defmodule ExampleWeb.RoutexCLDRBackend do
+  alias My.Attrs
+
+  use Routex.Backend,
+    extensions: [
+      Routex.Extension.Cldr,
+      Routex.Extension.Alternatives,
+      Routex.Extension.Interpolation,
+      Routex.Extension.Translations,
+      Routex.Extension.AttrGetters,
+      Routex.Extension.AlternativeGetters,
+      Routex.Extension.VerifiedRoutes,
+      # Routex.Extension.RouteHelpers,
+      Routex.Extension.Assigns
+    ],
+    alternatives: %{
+      "/" => %{
+        attrs: %{language: "en", locale: "en", territory: "US"},
+        branches: %{
+          "/en" => %{language: "en", locale: "en", territory: "US"},
+          "/fr" => %{language: "fr", locale: "fr", territory: "FR"},
+          "/th" => %{language: "th", locale: "th", territory: "TH"},
+          "/zh" => %{language: "zh", locale: "zh", territory: "CN"}
+        }
+      }
+    },
+    cldr_backend: Example.Cldr,
+    translations_backend: ExampleWeb.Gettext,
+    verified_sigil_routex: "~p",
+    verified_sigil_phoenix: "~o",
+    verified_url_routex: :url,
+    verified_path_routex: :path,
+    assigns: %{namespace: :loc, attrs: [:locale, :language, :locale_name]}
 end
 
 defmodule ExampleWeb.RoutexBackendAdmin do

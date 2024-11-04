@@ -1,4 +1,6 @@
 defmodule ExampleWeb.Router do
+  require Example.Cldr
+
   use ExampleWeb, :router
 
   import ExampleWeb.UserAuth
@@ -35,14 +37,33 @@ defmodule ExampleWeb.Router do
       resources "/resource", PageController, as: :resource
 
       live "/products", ProductLive.Index, :index
-      # live "/#{locale}/products/#{contact}", ProductLive.Index, :index,
-      #  private: %{rtx: %{alternatives_prefix: false}}
 
       live "/products/new", ProductLive.Index, :new
       live "/products/:id/edit", ProductLive.Index, :edit
 
       live "/products/:id", ProductLive.Show, :show
       live "/products/:id/show/edit", ProductLive.Show, :edit
+    end
+  end
+
+  preprocess_using ExampleWeb.RoutexCLDRBackend, alternatives_prefix: false do
+    scope "/#{territory}/cldr/", ExampleWeb do
+      pipe_through :browser
+
+      get "/", PageController, :home
+
+      resources "/resource", PageController, as: :resource
+
+      live "/posts/#{locale}", ProductLive.Index, :index
+
+      live "/posts/new", ProductLive.Index, :new
+      live "/posts/:id/edit", ProductLive.Index, :edit
+
+      live "/posts/:id", ProductLive.Show, :show
+      live "/posts/:id/show/edit", ProductLive.Show, :edit
+
+      # live "/#{locale}/products/#{contact}", ProductLive.Index, :index,
+      #  private: %{rtx: %{alternatives_prefix: false}}
     end
   end
 
@@ -68,7 +89,7 @@ defmodule ExampleWeb.Router do
     end
   end
 
-  ## Authentication routes
+  # ## Authentication routes
   preprocess_using ExampleWeb.RoutexBackend do
     scope "/", ExampleWeb do
       pipe_through [:browser, :redirect_if_user_is_authenticated]

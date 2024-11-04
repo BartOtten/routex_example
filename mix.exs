@@ -52,6 +52,8 @@ defmodule Example.MixProject do
       {:gettext, "~> 0.23"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ex_cldr, "~> 2.40.1"},
+      {:ex_cldr_locale_display, "~> 1.5.0"},
       routex_dep()
     ]
   end
