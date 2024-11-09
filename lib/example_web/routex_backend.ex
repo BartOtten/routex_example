@@ -86,18 +86,19 @@ defmodule ExampleWeb.RoutexCLDRBackend do
       # Routex.Extension.RouteHelpers,
       Routex.Extension.Assigns
     ],
-    alternatives: %{
-      "/" => %{
-        attrs: %{language: "en", locale: "en", territory: "US"},
-        branches: %{
-          "/en" => %{language: "en", locale: "en", territory: "US"},
-          "/fr" => %{language: "fr", locale: "fr", territory: "FR"},
-          "/th" => %{language: "th", locale: "th", territory: "TH"},
-          "/zh" => %{language: "zh", locale: "zh", territory: "CN"}
-        }
-      }
-    },
     cldr_backend: Example.Cldr,
+    # Equivalent of:
+    # alternatives: %{
+    #   "/" => %{
+    #     attrs: %{language: "en", locale: "en", territory: "US"},
+    #     branches: %{
+    #       "/en" => %{language: "en", locale: "en", territory: "US"},
+    #       "/fr" => %{language: "fr", locale: "fr", territory: "FR"},
+    #       "/th" => %{language: "th", locale: "th", territory: "TH"},
+    #       "/zh" => %{language: "zh", locale: "zh", territory: "CN"}
+    #     }
+    #   }
+    # },
     translations_backend: ExampleWeb.Gettext,
     verified_sigil_routex: "~p",
     verified_sigil_phoenix: "~o",
