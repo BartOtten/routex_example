@@ -71,7 +71,7 @@ defmodule ExampleWeb.RoutexBackend do
     assigns: %{namespace: :loc, attrs: [:discount, :locale, :language, :contact, :name]}
 end
 
-defmodule ExampleWeb.RoutexCLDRBackend do
+defmodule ExampleWeb.RoutexCldrBackend do
   alias My.Attrs
 
   use Routex.Backend,
