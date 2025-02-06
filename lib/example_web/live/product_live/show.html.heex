@@ -1,5 +1,5 @@
 <.header>
-  Product <%= @product.id %>
+  Product {@product.id}
   <:subtitle>This is a product record from your database.</:subtitle>
   <:actions>
     <.link patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
@@ -9,8 +9,8 @@
 </.header>
 
 <.list>
-  <:item title="Name"><%= @product.name %></:item>
-  <:item title="Price"><%= @product.price * (1 - @loc.discount) %></:item>
+  <:item title="Name">{@product.name}</:item>
+  <:item title="Price">{@product.price * (1 - @loc.discount)}</:item>
 </.list>
 
 <.back navigate={~p"/products"}>Back to products</.back>

@@ -8,7 +8,7 @@ defmodule ExampleWeb.ProductLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
         <:subtitle>Use this form to manage product records in your database.</:subtitle>
       </.header>
 

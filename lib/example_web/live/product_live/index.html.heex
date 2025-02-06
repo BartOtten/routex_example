@@ -14,10 +14,10 @@ in links that change branch.-->
 
 <.table id="products" rows={@url && @products} row_click={&JS.navigate(~p"/products/#{&1}")}>
   <:col :let={product} label="Name">
-    <%= product.name %>
+    {product.name}
   </:col>
   <:col :let={product} label="Price">
-    <%= product.price * (1 - @loc.discount) %>
+    {product.price * (1 - @loc.discount)}
   </:col>
   <:action :let={product}>
     <div class="sr-only">
@@ -54,7 +54,7 @@ in links that change branch.-->
         phx-click={JS.push("redirect", value: %{location: "root"})}
         data-confirm="You will be redirected to the root path of the current branch."
       >
-        <.button>try: redirect(socket, url(<%= @url && ~p"/" %>)</.button>
+        <.button>try: redirect(socket, url({@url && ~p"/"})</.button>
       </.link>
     </td>
   </tr>
@@ -67,7 +67,7 @@ in links that change branch.-->
         phx-click={JS.push("redirect", value: %{location: "products"})}
         data-confirm="You will be redirected to the product path of the current branch."
       >
-        <.button>try: redirect(socket, url(<%= @url && ~p"/products" %>)</.button>
+        <.button>try: redirect(socket, url({@url && ~p"/products"})</.button>
       </.link>
     </td>
   </tr>
@@ -80,7 +80,7 @@ in links that change branch.-->
         class="mt-5"
         data-confirm="You will navigate to product '1' in the current branch"
       >
-        <.button>try: <%= @url && ~p"/products/1" %></.button>
+        <.button>try: {@url && ~p"/products/1"}</.button>
       </.link>
     </td>
   </tr>
@@ -93,7 +93,7 @@ in links that change branch.-->
         class="mt-5"
         data-confirm="You will navigate to product '1' in branch 'europe'"
       >
-        <.button>try: <%= @url && ~p"/europe/products/1" %></.button>
+        <.button>try: {@url && ~p"/europe/products/1"}</.button>
       </.link>
     </td>
   </tr>
@@ -114,11 +114,11 @@ in links that change branch.-->
   <tbody>
     <tr>
       <td class="pr-4">Routes.product_show_path(@socket, :show, 2)</td>
-      <td><%= @url && Routes.product_show_path(@socket, :show, 2) %></td>
+      <td>{@url && Routes.product_show_path(@socket, :show, 2)}</td>
     </tr>
     <tr>
       <td class="pr-4">Routes.product_show_url(@socket, :show, 3)</td>
-      <td><%= @url && Routes.product_show_url(@socket, :show, 3) %></td>
+      <td>{@url && Routes.product_show_url(@socket, :show, 3)}</td>
     </tr>
   </tbody>
 </table>
@@ -146,12 +146,12 @@ in links that change branch.-->
       Routes.product_show_europe_nl_path(@socket, :show, 2)
     </td>
     <td>
-      <%= @url &&
+      {@url &&
         Routes.product_show_europe_nl_path(
           @socket,
           :show,
           2
-        ) %>
+        )}
     </td>
   </tr>
   <tr>
@@ -159,12 +159,12 @@ in links that change branch.-->
       Routes.product_show_europe_nl_url(@socket, :show, 3)
     </td>
     <td>
-      <%= @url &&
+      {@url &&
         Routes.product_show_europe_nl_url(
           @socket,
           :show,
           3
-        ) %>
+        )}
     </td>
   </tr>
 </table>
