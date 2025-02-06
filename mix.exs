@@ -75,9 +75,18 @@ defmodule Example.MixProject do
   end
 
   defp routex_dep() do
-    if path = System.get_env("ROUTEX_PATH") do
-      IO.puts(">> !! USING LOCAL ROUTEX PATH !! <<")
-      {:routex, path: path}
+    if File.exists?("routex", [:raw]) do
+      msg =
+        [
+          IO.ANSI.blink_slow(),
+          IO.ANSI.light_red_background(),
+          " >> !! DEV MODE - USING SYMLINKED ROUTEX !! << ",
+          IO.ANSI.reset()
+        ]
+
+      IO.puts(msg)
+
+      {:routex, path: "routex"}
     else
       {:routex, ">= 0.0.0"}
     end
