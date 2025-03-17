@@ -21,3 +21,113 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:34
+#, elixir-autogen, elixir-format
+msgid "Are you sure?"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:112
+#, elixir-autogen, elixir-format
+msgid "Automated Helpers"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:29
+#, elixir-autogen, elixir-format
+msgid "Edit"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:10
+#, elixir-autogen, elixir-format
+msgid "Listing Products"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:181
+#, elixir-autogen, elixir-format
+msgid "Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:135
+#, elixir-autogen, elixir-format
+msgid "Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "New Product"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "Price"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:45
+#, elixir-autogen, elixir-format
+msgid "Routex is fully compatible with Verified Routes"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:27
+#, elixir-autogen, elixir-format
+msgid "Show"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:75
+#, elixir-autogen, elixir-format
+msgid "You will be redirected to the product path of the current branch."
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:61
+#, elixir-autogen, elixir-format
+msgid "You will be redirected to the root path of the current branch."
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:102
+#, elixir-autogen, elixir-format
+msgid "You will navigate to product '1' in branch 'europe'"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:89
+#, elixir-autogen, elixir-format
+msgid "You will navigate to product '1' in the current branch"
+msgstr ""
+
+#: lib/example_web/controllers/page_html/home.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "A demo application using"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:113
+#, elixir-autogen, elixir-format
+msgid "As alternative routes are generated, the default Phoenix Route Helpers now\n  return values depending on the current 'branch'."
+msgstr ""
+
+#: lib/example_web/controllers/page_html/home.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "The source code of this example can be found at"
+msgstr ""
+
+#: lib/example_web/controllers/page_html/home.html.heex:61
+#, elixir-autogen, elixir-format
+msgid "View the product page (current route branch)"
+msgstr ""
+
+#: lib/example_web/components/core_components.ex:594
+#, elixir-autogen, elixir-format
+msgid "The extension AlternativeGetters makes it easy to link to\n    alternative pages."
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:36
+#, elixir-autogen, elixir-format
+msgid "Delete"
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:141
+#, elixir-autogen, elixir-format
+msgid "The helpers generated -alternative-\n  routes always return a route in the associated branch. Below are the\n  helpers to link to a page in branch Europe/Netherlands."
+msgstr ""

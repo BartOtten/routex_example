@@ -565,20 +565,25 @@ defmodule ExampleWeb.CoreComponents do
         </thead>
         <tbody>
           <tr>
-            <td class="text-left w-48">Locale:</td>
-            <td>{@loc.locale}</td>
+            <td class="text-left w-48">@namespace.locale:</td>
+            <td>{@namespace.locale}</td>
           </tr>
           <tr>
+            <td class="text-left w-48">Gettext.get_locale():</td>
+            <td>{Gettext.get_locale(ExampleWeb.Gettext)}</td>
+          </tr>
+
+          <tr>
             <td class="text-left w-48">Language:</td>
-            <td>{@loc.language}</td>
+            <td>{@namespace.language}</td>
           </tr>
           <tr>
             <td>Audience:</td>
-            <td>{@loc.name}</td>
+            <td>{@namespace.name}</td>
           </tr>
           <tr>
             <td>Contact:</td>
-            <td>{@loc.contact}</td>
+            <td>{@namespace.contact}</td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -586,15 +591,15 @@ defmodule ExampleWeb.CoreComponents do
         </tbody>
       </table>
       <h3 class="font-bold mt-4">Alternatives</h3>
-      <p class="mb-2">The extension AlternativeGetters makes it easy to link to
-        alternative pages.</p>
+      <p class="mb-2">{gettext("The extension AlternativeGetters makes it easy to link to
+        alternative pages.")}</p>
       <!-- alternatives/1 is located in ExampleWeb.Router.RoutexHelpers aliased as Routes -->
       <.link
         :for={alternative <- Routes.alternatives(@url)}
         class="button"
         rel="alternate"
         hreflang={alternative.attrs.locale}
-        patch={alternative.slug}
+        navigate={alternative.slug}
       >
         <.button class={(alternative.match? && "bg-[#FD4F00]") || ""}>
           {alternative.attrs.name}

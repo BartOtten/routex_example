@@ -22,3 +22,11 @@ defmodule ExampleWeb.Gettext do
   """
   use Gettext.Backend, otp_app: :example
 end
+
+defmodule ExampleWeb.CldrGettext do
+  use Gettext.Backend, otp_app: :example, priv: "priv/cldr_gettext"
+end
+
+defmodule ExamAGettextdminGettext do
+  use Gettext.Backend, otp_app: :example, priv: "priv/admin_gettext"
+end
