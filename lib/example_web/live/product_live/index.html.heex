@@ -38,7 +38,15 @@ completely reloaded without diffing. This is the reason it is recommended to use
   </:action>
 </.table>
 
-<.routex_debug url={@url} />
+<.routex_debug url={@url} language={@language} locale={@locale} region={@region}/>
+
+<hr class="mt-10 mb-10" />
+
+<.link navigate={~p"/"}>
+  <.button>
+    {gettext("Navigate to homepage in current scope using ~p\"/\"")}
+  </.button>
+</.link>
 
 <hr class="mt-10 mb-10" />
 <.header class="mb-5">Verified Routes</.header>
@@ -106,7 +114,13 @@ completely reloaded without diffing. This is the reason it is recommended to use
     </td>
   </tr>
 </table>
+<h3 class="font-bold mt-8">{gettext("Automated Helpers")}</h3>
+<p>
+  {gettext("Phoenix Route Helpers are disabled in this demo. The example
+     code can be found in the template")}
+</p>
 
+<%!--
 <hr class="mt-10 mb-10" />
 
 <h3 class="font-bold mt-8">{gettext("Automated Helpers")}</h3>
@@ -181,7 +195,7 @@ completely reloaded without diffing. This is the reason it is recommended to use
     {gettext("Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`")}
   </.button>
 </.link>
-
+--%>
 <.modal
   :if={@live_action in [:new, :edit]}
   id="product-modal"

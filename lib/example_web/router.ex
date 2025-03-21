@@ -44,6 +44,10 @@ defmodule ExampleWeb.Router do
 
       live "/products/:id", ProductLive.Show, :show
       live "/products/:id/show/edit", ProductLive.Show, :edit
+
+      # for i <- 0..400 do
+      #   live "/generated" <> to_string(i), ProductLive.Show, :edit
+      # end
     end
   end
 

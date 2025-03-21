@@ -548,64 +548,89 @@ defmodule ExampleWeb.CoreComponents do
   require ExampleWeb.Router.RoutexHelpers
   alias ExampleWeb.Router.RoutexHelpers, as: Routes
 
-  attr :url, :any
+  attr :url, :string
+  attr :language, :string
+  attr :locale, :string
+  attr :region, :string
 
   def routex_debug(assigns) do
     attrs = Routes.attrs(assigns.url)
     assigns = Phoenix.Component.assign(assigns, attrs.assigns)
 
     ~H"""
-    <div style="margin-top: 3rem">
-      <table class="table-auto">
-        <thead class="text-left">
-          <tr>
-            <th>Label</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-left w-48">@namespace.locale:</td>
-            <td>{@namespace.locale}</td>
-          </tr>
-          <tr>
-            <td class="text-left w-48">Gettext.get_locale():</td>
-            <td>{Gettext.get_locale(ExampleWeb.Gettext)}</td>
-          </tr>
-
-          <tr>
-            <td class="text-left w-48">Language:</td>
-            <td>{@namespace.language}</td>
-          </tr>
-          <tr>
-            <td>Audience:</td>
-            <td>{@namespace.name}</td>
-          </tr>
-          <tr>
-            <td>Contact:</td>
-            <td>{@namespace.contact}</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <div class="mt-2 mb-8">
       <h3 class="font-bold mt-4">Alternatives</h3>
       <p class="mb-2">{gettext("The extension AlternativeGetters makes it easy to link to
         alternative pages.")}</p>
       <!-- alternatives/1 is located in ExampleWeb.Router.RoutexHelpers aliased as Routes -->
       <.link
         :for={alternative <- Routes.alternatives(@url)}
-        class="button"
         rel="alternate"
-        hreflang={alternative.attrs.locale}
+        hreflang={alternative.attrs.language}
         navigate={alternative.slug}
       >
-        <.button class={(alternative.match? && "bg-[#FD4F00]") || ""}>
-          {alternative.attrs.name}
+        <.button class={[(alternative.match? && "bg-[#FD4F00]"), "px-2 py-1 text-xs font-medium"]}>
+          {alternative.attrs.region_display_name} - {alternative.attrs.language_display_name}
         </.button>
       </.link>
-    </div>
+      </div>
+
+    <table class="table-auto">
+      <thead class="text-left">
+        <tr>
+          <th>Embedded in code</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-left w-80">@route.contact:</td>
+          <td>{@namespace.contact}</td>
+        </tr>
+        <tr>
+          <td class="text-left w-80">@route.locale:</td>
+          <td>{@namespace.locale}</td>
+        </tr>
+        <tr>
+          <td class="text-left w-80">@route.region_display_name</td>
+          <td>{@namespace.region_display_name}</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table-auto">
+      <thead class="text-left">
+        <tr>
+          <th>Runtime values</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-left w-48">@runtime.locale:</td>
+          <td>{@locale}</td>
+          <td>[:query, :session, :accept_language, :attrs]</td>
+        </tr>
+        <tr>
+          <td class="text-left w-48">@runtime.language:</td>
+          <td>{@language}</td>
+          <td>[:query, :attrs]</td>
+        </tr>
+        <tr>
+          <td class="text-left w-48">@runtime.region:</td>
+          <td>{@region}</td>
+          <td>[:accept_language, :attrs]</td>
+        </tr>
+        <tr>
+          <td class="text-left w-48">Gettext.get_locale():</td>
+          <td>{Gettext.get_locale(ExampleWeb.Gettext)}</td>
+        </tr>
+      </tbody>
+    </table>
+      </div>
     """
   end
 

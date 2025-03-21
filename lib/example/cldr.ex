@@ -7,7 +7,7 @@ defmodule Example.Cldr do
   to functions on this module.
   """
   use Cldr,
-    locales: ["en", "fr", "zh", "th"],
+    locales: ["en", "fr", "zh", "th", "nl", "be", "en-GB"],
     default_locale: "en",
     providers: [Cldr.Territory, Cldr.LocaleDisplay, Cldr.Currency]
 end

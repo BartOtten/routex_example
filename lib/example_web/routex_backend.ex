@@ -1,6 +1,12 @@
 defmodule My.Attrs do
   @moduledoc false
-  defstruct [:contact, :name, locale: "en-US", language: "en", discount: 0]
+  defstruct [
+    :contact,
+    :name,
+    :region_display_name,
+    locale: "en-001",
+    discount: 0,
+  ]
 end
 
 defmodule ExampleWeb.RoutexBackend do
@@ -8,35 +14,35 @@ defmodule ExampleWeb.RoutexBackend do
 
   use Routex.Backend,
     extensions: [
+      # required
       Routex.Extension.AttrGetters,
       Routex.Extension.Alternatives,
       Routex.Extension.Translations,
       Routex.Extension.Interpolation,
-      #Routex.Extension.Cloak,
+      # Routex.Extension.Cloak,
       Routex.Extension.AlternativeGetters,
       Routex.Extension.VerifiedRoutes,
       Routex.Extension.RouteHelpers,
       Routex.Extension.Assigns,
       Routex.Extension.LiveViewHooks,
       Routex.Extension.Plugs,
-      Routex.Extension.SimpleLocale,
+      Routex.Extension.RuntimeCallbacks,
+      Routex.Extension.SimpleLocale
     ],
     alternatives_prefix: true,
     alternatives: %{
       "/" => %{
-        attrs: %Attrs{name: "Worldwide", contact: "root@example.com", discount: 0.02},
+        attrs: %Attrs{region_display_name: "Worldwide", contact: "root@example.com", discount: 0.02},
         branches: %{
           "/europe" => %{
             attrs: %Attrs{
-              name: "Europe",
-              locale: "en_150",
+              locale: "en-150",
               contact: "europe@example.com",
               discount: 0.16
             },
             branches: %{
               "/nl" => %{
                 attrs: %Attrs{
-                  name: "The Netherlands",
                   locale: "nl-NL",
                   contact: "verkoop@example.nl",
                   discount: 0.25
@@ -44,7 +50,6 @@ defmodule ExampleWeb.RoutexBackend do
               },
               "/be" => %{
                 attrs: %Attrs{
-                  name: "Belgium",
                   locale: "nl-BE",
                   contact: "handel@example.be",
                   discount: 0.5
@@ -54,24 +59,29 @@ defmodule ExampleWeb.RoutexBackend do
           },
           "/gb" => %{
             attrs: %Attrs{
-              name: "Great Britain",
+              region_display_name: "Great Britain",
               locale: "en-GB",
               contact: "sales@example.com",
               discount: 0.3
             }
           }
         }
-       }
-      },
+      }
+    },
+    region_sources: [:accept_language, :attrs],
+    region_params: ["region"],
+    language_sources: [:query, :attrs],
+    language_params: ["language"],
+    locale_sources: [:query, :session, :accept_language, :attrs],
+    locale_params: ["locale"],
     translations_backend: ExampleWeb.Gettext,
-    translation_backends: [Gettext: ExampleWeb.Gettext],
-    locale_backends: [Cldr: Example.Cldr],
+    runtime_callbacks: [{Gettext, :put_locale, [ExampleWeb.Gettext, [:attrs, :language]]},{Cldr, :put_locale, [Example.Cldr, [:attrs, :locale]]}],
     cloak_character: ".",
     verified_sigil_routex: "~p",
     verified_sigil_phoenix: "~o",
     verified_url_routex: :url,
     verified_path_routex: :path,
-    assigns: %{namespace: :namespace, attrs: [:discount, :locale, :language, :contact, :name]}
+    assigns: %{namespace: :namespace, attrs: [:discount, :locale, :language, :region_display_name, :contact, :name]}
 end
 
 # defmodule ExampleWeb.RoutexCldrBackend do
@@ -83,6 +93,7 @@ end
 #       Routex.Extension.Alternatives,
 #       Routex.Extension.Interpolation,
 #       Routex.Extension.Translations,
+
 #       Routex.Extension.AttrGetters,
 #       Routex.Extension.AlternativeGetters,
 #       Routex.Extension.VerifiedRoutes,
