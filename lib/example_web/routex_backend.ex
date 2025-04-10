@@ -5,7 +5,7 @@ defmodule My.Attrs do
     :name,
     :region_display_name,
     locale: "en-001",
-    discount: 0,
+    discount: 0
   ]
 end
 
@@ -14,9 +14,9 @@ defmodule ExampleWeb.RoutexBackend do
 
   use Routex.Backend,
     extensions: [
-      # required
       Routex.Extension.AttrGetters,
-      Routex.Extension.Alternatives,
+      # auto enabled by SimpleLocale
+      #Routex.Extension.Alternatives,
       Routex.Extension.Translations,
       Routex.Extension.Interpolation,
       # Routex.Extension.Cloak,
@@ -27,47 +27,9 @@ defmodule ExampleWeb.RoutexBackend do
       Routex.Extension.LiveViewHooks,
       Routex.Extension.Plugs,
       Routex.Extension.RuntimeCallbacks,
-      Routex.Extension.SimpleLocale
+      Routex.Extension.Localize.Routes,
+      Routex.Extension.Localize.Runtime,
     ],
-    alternatives_prefix: true,
-    alternatives: %{
-      "/" => %{
-        attrs: %Attrs{region_display_name: "Worldwide", contact: "root@example.com", discount: 0.02},
-        branches: %{
-          "/europe" => %{
-            attrs: %Attrs{
-              locale: "en-150",
-              contact: "europe@example.com",
-              discount: 0.16
-            },
-            branches: %{
-              "/nl" => %{
-                attrs: %Attrs{
-                  locale: "nl-NL",
-                  contact: "verkoop@example.nl",
-                  discount: 0.25
-                }
-              },
-              "/be" => %{
-                attrs: %Attrs{
-                  locale: "nl-BE",
-                  contact: "handel@example.be",
-                  discount: 0.5
-                }
-              }
-            }
-          },
-          "/gb" => %{
-            attrs: %Attrs{
-              region_display_name: "Great Britain",
-              locale: "en-GB",
-              contact: "sales@example.com",
-              discount: 0.3
-            }
-          }
-        }
-      }
-    },
     region_sources: [:accept_language, :attrs],
     region_params: ["region"],
     language_sources: [:query, :attrs],
@@ -75,13 +37,28 @@ defmodule ExampleWeb.RoutexBackend do
     locale_sources: [:query, :session, :accept_language, :attrs],
     locale_params: ["locale"],
     translations_backend: ExampleWeb.Gettext,
-    runtime_callbacks: [{Gettext, :put_locale, [ExampleWeb.Gettext, [:attrs, :language]]},{Cldr, :put_locale, [Example.Cldr, [:attrs, :locale]]}],
+    locales: [
+      {"en-001", %{region_display_name: "Worldwide", contact: "root@example.com", discount: 0.02}},
+      {"en-150", %{prefix: "/eu", contact: "europe@example.com", discount: 0.16}},
+      {"nl-NL", %{contact: "verkoop@example.nl", discount: 0.25}},
+      {"nl-BE", %{prefix: "/nl/be",contact: "handel@example.be", discount: 0.5}},
+      {"en-GB", %{contact: "sales@example.com", discount: 0.3}}
+    ],
+    default_locale: "en-001",
+    locale_prefix_sources: :region_display_name,
+    runtime_callbacks: [
+      {Gettext, :put_locale, [ExampleWeb.Gettext, [:attrs, :language]]},
+      {Cldr, :put_locale, [Example.Cldr, [:attrs, :locale]]}
+    ],
     cloak_character: ".",
     verified_sigil_routex: "~p",
     verified_sigil_phoenix: "~o",
     verified_url_routex: :url,
     verified_path_routex: :path,
-    assigns: %{namespace: :namespace, attrs: [:discount, :locale, :language, :region_display_name, :contact, :name]}
+    assigns: %{
+      namespace: :namespace,
+      attrs: [:discount, :locale, :language, :region_display_name, :contact, :name]
+    }
 end
 
 # defmodule ExampleWeb.RoutexCldrBackend do

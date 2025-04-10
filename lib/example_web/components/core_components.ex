@@ -571,7 +571,7 @@ defmodule ExampleWeb.CoreComponents do
         navigate={alternative.slug}
       >
         <.button class={[(alternative.match? && "bg-[#FD4F00]"), "px-2 py-1 text-xs font-medium"]}>
-          {alternative.attrs.region_display_name} - {alternative.attrs.language_display_name}
+           {alternative.attrs.language_display_name} ({alternative.attrs.region_display_name})
         </.button>
       </.link>
       </div>
