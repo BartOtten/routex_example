@@ -210,7 +210,7 @@ defmodule ExampleWeb.CoreComponents do
       <.button phx-click="go" class="ml-2">Send!</.button>
   """
   attr :type, :string, default: nil
-  attr :class, :string, default: nil
+  attr :class, :any, default: nil
   attr :rest, :global, include: ~w(disabled form name value)
 
   slot :inner_block, required: true
@@ -549,9 +549,7 @@ defmodule ExampleWeb.CoreComponents do
   alias ExampleWeb.Router.RoutexHelpers, as: Routes
 
   attr :url, :string
-  attr :language, :string
-  attr :locale, :string
-  attr :region, :string
+  attr :runtime, :map
 
   def routex_debug(assigns) do
     attrs = Routes.attrs(assigns.url)
@@ -570,7 +568,7 @@ defmodule ExampleWeb.CoreComponents do
         hreflang={alternative.attrs.language}
         navigate={alternative.slug}
       >
-        <.button class={[(alternative.match? && "bg-[#FD4F00]"), "px-2 py-1 text-xs font-medium"]}>
+        <.button class={[alternative.match? && "bg-[#FD4F00]", "px-2 py-1 text-xs font-medium"]}>
            {alternative.attrs.language_display_name} ({alternative.attrs.region_display_name})
         </.button>
       </.link>
@@ -586,15 +584,15 @@ defmodule ExampleWeb.CoreComponents do
       <tbody>
         <tr>
           <td class="text-left w-80">@route.contact:</td>
-          <td>{@namespace.contact}</td>
+          <td>{@route.contact}</td>
         </tr>
         <tr>
           <td class="text-left w-80">@route.locale:</td>
-          <td>{@namespace.locale}</td>
+          <td>{@route.locale}</td>
         </tr>
         <tr>
           <td class="text-left w-80">@route.region_display_name</td>
-          <td>{@namespace.region_display_name}</td>
+          <td>{@route.region_display_name}</td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -606,27 +604,29 @@ defmodule ExampleWeb.CoreComponents do
         <tr>
           <th>Runtime values</th>
           <th>Value</th>
+          <th>Source priority</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="text-left w-48">@runtime.locale:</td>
-          <td>{@locale}</td>
+          <td class="w-36">{@runtime.locale}</td>
           <td>[:query, :session, :accept_language, :attrs]</td>
         </tr>
         <tr>
           <td class="text-left w-48">@runtime.language:</td>
-          <td>{@language}</td>
+          <td>{@runtime.language}</td>
           <td>[:query, :attrs]</td>
         </tr>
         <tr>
           <td class="text-left w-48">@runtime.region:</td>
-          <td>{@region}</td>
+          <td>{@runtime.region}</td>
           <td>[:accept_language, :attrs]</td>
         </tr>
         <tr>
           <td class="text-left w-48">Gettext.get_locale():</td>
           <td>{Gettext.get_locale(ExampleWeb.Gettext)}</td>
+          <td>Stateful process</td>
         </tr>
       </tbody>
     </table>

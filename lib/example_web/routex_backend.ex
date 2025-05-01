@@ -16,7 +16,7 @@ defmodule ExampleWeb.RoutexBackend do
     extensions: [
       Routex.Extension.AttrGetters,
       # auto enabled by SimpleLocale
-      #Routex.Extension.Alternatives,
+      # Routex.Extension.Alternatives,
       Routex.Extension.Translations,
       Routex.Extension.Interpolation,
       # Routex.Extension.Cloak,
@@ -26,37 +26,39 @@ defmodule ExampleWeb.RoutexBackend do
       Routex.Extension.Assigns,
       Routex.Extension.LiveViewHooks,
       Routex.Extension.Plugs,
-      Routex.Extension.RuntimeCallbacks,
-      Routex.Extension.Localize.Routes,
-      Routex.Extension.Localize.Runtime,
+      Routex.Extension.Localize.Phoenix.Routes,
+      Routex.Extension.Localize.Phoenix.Runtime,
+      Routex.Extension.RuntimeDispatcher
     ],
-    region_sources: [:accept_language, :attrs],
+    region_sources: [:accept_language, :route],
     region_params: ["region"],
-    language_sources: [:query, :attrs],
+    language_sources: [:query, :route],
     language_params: ["language"],
-    locale_sources: [:query, :session, :accept_language, :attrs],
+    locale_sources: [:query, :session, :accept_language, :route],
     locale_params: ["locale"],
-    translations_backend: ExampleWeb.Gettext,
+    # translations_backend: ExampleWeb.Gettext,
     locales: [
-      {"en-001", %{region_display_name: "Worldwide", contact: "root@example.com", discount: 0.02}},
+      {"en-001",
+       %{region_display_name: "Worldwide", contact: "root@example.com", discount: 0.02}},
       {"en-150", %{prefix: "/eu", contact: "europe@example.com", discount: 0.16}},
       {"nl-NL", %{contact: "verkoop@example.nl", discount: 0.25}},
-      {"nl-BE", %{prefix: "/nl/be",contact: "handel@example.be", discount: 0.5}},
+      {"nl-BE", %{prefix: "/nl/be", contact: "handel@example.be", discount: 0.5}},
       {"en-GB", %{contact: "sales@example.com", discount: 0.3}}
     ],
     default_locale: "en-001",
-    locale_prefix_sources: :region_display_name,
-    runtime_callbacks: [
-      {Gettext, :put_locale, [ExampleWeb.Gettext, [:attrs, :language]]},
-      {Cldr, :put_locale, [Example.Cldr, [:attrs, :locale]]}
-    ],
+    locale_backend: Example.Cldr,
+    locale_prefix_sources: :locale,
+    # dispatch_targets: [
+    #   {Gettext, :put_locale, [ExampleWeb.Gettext, [:attrs, :language]]},
+    #   {Cldr, :put_locale, [Example.Cldr, [:attrs, :locale]]}
+    # ],
     cloak_character: ".",
     verified_sigil_routex: "~p",
-    verified_sigil_phoenix: "~o",
+    # verified_sigil_phoenix: "~o",
     verified_url_routex: :url,
     verified_path_routex: :path,
     assigns: %{
-      namespace: :namespace,
+      namespace: :route,
       attrs: [:discount, :locale, :language, :region_display_name, :contact, :name]
     }
 end

@@ -20,7 +20,7 @@ completely reloaded without diffing. This is the reason it is recommended to use
     {product.name}
   </:col>
   <:col :let={product} label={gettext("Price")}>
-    {product.price * (1 - @namespace.discount)}
+    {product.price * (1 - @route.discount)}
   </:col>
   <:action :let={product}>
     <div class="sr-only">
@@ -38,7 +38,7 @@ completely reloaded without diffing. This is the reason it is recommended to use
   </:action>
 </.table>
 
-<.routex_debug url={@url} language={@language} locale={@locale} region={@region}/>
+<.routex_debug url={@url} runtime={@runtime}/>
 
 <hr class="mt-10 mb-10" />
 
@@ -102,14 +102,14 @@ completely reloaded without diffing. This is the reason it is recommended to use
   </tr>
   <tr>
     <td>Fixed</td>
-    <td class="pr-4">~p"/europe/products/1</td>
+    <td class="pr-4">~p"/eu/products/1</td>
     <td>
       <.link
-        patch={@url && ~p"/europe/products/1"}
+        patch={@url && ~p"/eu/products/1"}
         class="mt-5"
         data-confirm={gettext("You will navigate to product '1' in branch 'europe'")}
       >
-        <.button>try: {@url && ~p"/europe/products/1"}</.button>
+        <.button>try: {@url && ~p"/eu/products/1"}</.button>
       </.link>
     </td>
   </tr>
