@@ -24,7 +24,7 @@ defmodule ExampleWeb do
       # Router Extension Framework
       use Routex.Router
 
-      use Phoenix.Router, helpers: true
+      use Phoenix.Router, helpers: false
 
       # Import common connection and controller functions to use in pipelines
       import Plug.Conn

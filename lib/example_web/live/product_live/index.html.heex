@@ -1,42 +1,56 @@
-<!-- Using the code `@url && [some assignment]` causes Phoenix LiveView to update
-the dynamic links on `patch` (as used by Routex Debug component). When using `navigate`,
-this workaround is not necessary as the page is completely reloaded without diffing.
-This is normal LiveView behaviour and the reason why it is recommended to use `navigate`
-in links that change branch.-->
+<!-- The demonstration page uses `patch` links -to avoind scrolling- and as a
+result needs a workaround (prefixing with `@url &&`) to force LiveView to update
+dynamic links.
+
+When using `navigate`, this workaround is not necessary as the page is
+completely reloaded without diffing. This is the reason it is recommended to use
+`navigate` instead of `patch` for links that change branch.
+-->
 <.header>
-  Listing Products
+  {gettext("Listing Products")}
   <:actions>
     <.link patch={@url && ~p"/products/new"}>
-      <.button>New Product</.button>
+      <.button>{gettext("New Product")}</.button>
     </.link>
   </:actions>
 </.header>
 
 <.table id="products" rows={@url && @products} row_click={&JS.navigate(~p"/products/#{&1}")}>
-  <:col :let={product} label="Name">
+  <:col :let={product} label={gettext("Name")}>
     {product.name}
   </:col>
-  <:col :let={product} label="Price">
-    {product.price * (1 - @loc.discount)}
+  <:col :let={product} label={gettext("Price")}>
+    {product.price * (1 - @route.discount)}
   </:col>
   <:action :let={product}>
     <div class="sr-only">
-      <.link navigate={~p"/products/#{product}"}>Show</.link>
+      <.link navigate={~p"/products/#{product}"}>{gettext("Show")}</.link>
     </div>
-    <.link patch={~p"/products/#{product}/edit?#{%{foo: "bar"}}"}>Edit</.link>
+    <.link patch={~p"/products/#{product}/edit?#{%{foo: "bar"}}"}>{gettext("Edit")}</.link>
   </:action>
   <:action :let={product}>
-    <.link phx-click={JS.push("delete", value: %{id: product.id})} data-confirm="Are you sure?">
-      Delete
+    <.link
+      phx-click={JS.push("delete", value: %{id: product.id})}
+      data-confirm={gettext("Are you sure?")}
+    >
+      {gettext("Delete")}
     </.link>
   </:action>
 </.table>
 
-<.routex_debug url={@url} />
+<.routex_debug url={@url} runtime={@runtime}/>
+
+<hr class="mt-10 mb-10" />
+
+<.link navigate={~p"/"}>
+  <.button>
+    {gettext("Navigate to homepage in current scope using ~p\"/\"")}
+  </.button>
+</.link>
 
 <hr class="mt-10 mb-10" />
 <.header class="mb-5">Verified Routes</.header>
-<p>Routex is fully compatible with Verified Routes</p>
+<p>{gettext("Routex is fully compatible with Verified Routes")}</p>
 <table class="text-xs">
   <thead class="font-bold">
     <tr>
@@ -52,7 +66,7 @@ in links that change branch.-->
       <.link
         class="mt-5"
         phx-click={JS.push("redirect", value: %{location: "root"})}
-        data-confirm="You will be redirected to the root path of the current branch."
+        data-confirm={gettext("You will be redirected to the root path of the current branch.")}
       >
         <.button>try: redirect(socket, url({@url && ~p"/"})</.button>
       </.link>
@@ -65,7 +79,9 @@ in links that change branch.-->
       <.link
         class="mt-5"
         phx-click={JS.push("redirect", value: %{location: "products"})}
-        data-confirm="You will be redirected to the product path of the current branch."
+        data-confirm={
+          gettext("You will be redirected to the product path of the current branch.")
+        }
       >
         <.button>try: redirect(socket, url({@url && ~p"/products"})</.button>
       </.link>
@@ -78,7 +94,7 @@ in links that change branch.-->
       <.link
         patch={@url && ~p"/products/1"}
         class="mt-5"
-        data-confirm="You will navigate to product '1' in the current branch"
+        data-confirm={gettext("You will navigate to product '1' in the current branch")}
       >
         <.button>try: {@url && ~p"/products/1"}</.button>
       </.link>
@@ -86,24 +102,30 @@ in links that change branch.-->
   </tr>
   <tr>
     <td>Fixed</td>
-    <td class="pr-4">~p"/europe/products/1</td>
+    <td class="pr-4">~p"/eu/products/1</td>
     <td>
       <.link
-        patch={@url && ~p"/europe/products/1"}
+        patch={@url && ~p"/eu/products/1"}
         class="mt-5"
-        data-confirm="You will navigate to product '1' in branch 'europe'"
+        data-confirm={gettext("You will navigate to product '1' in branch 'europe'")}
       >
-        <.button>try: {@url && ~p"/europe/products/1"}</.button>
+        <.button>try: {@url && ~p"/eu/products/1"}</.button>
       </.link>
     </td>
   </tr>
 </table>
+<h3 class="font-bold mt-8">{gettext("Automated Helpers")}</h3>
+<p>
+  {gettext("Phoenix Route Helpers are disabled in this demo. The example
+     code can be found in the template")}
+</p>
 
+<%!--
 <hr class="mt-10 mb-10" />
 
-<h3 class="font-bold mt-8">Automated Helpers</h3>
-<p>As alternative routes are generated, the default Phoenix Route Helpers now
-  return values depending on the current 'branch'.</p>
+<h3 class="font-bold mt-8">{gettext("Automated Helpers")}</h3>
+<p>{gettext("As alternative routes are generated, the default Phoenix Route Helpers now
+  return values depending on the current 'branch'.")}</p>
 <table class="table-auto text-xs mt-2 mb-4">
   <thead>
     <tr>
@@ -124,15 +146,15 @@ in links that change branch.-->
 </table>
 <.link navigate={@url && Routes.page_path(@socket, :home)}>
   <.button>
-    Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`
+    {gettext("Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`")}
   </.button>
 </.link>
 
 <h3 class="font-bold mt-4">Static Helpers</h3>
 <p>
-  The helpers generated <strong>alternative</strong>
+  {gettext("The helpers generated -alternative-
   routes always return a route in the associated branch. Below are the
-  helpers to link to a page in branch Europe/Netherlands.
+  helpers to link to a page in branch Europe/Netherlands.")}
 </p>
 <table class=" text-xs mt-2">
   <thead>
@@ -169,9 +191,11 @@ in links that change branch.-->
   </tr>
 </table>
 <.link navigate={@url && Routes.page_europe_path(@socket, :home)}>
-  <.button>Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`</.button>
+  <.button>
+    {gettext("Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`")}
+  </.button>
 </.link>
-
+--%>
 <.modal
   :if={@live_action in [:new, :edit]}
   id="product-modal"

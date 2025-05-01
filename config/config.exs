@@ -32,6 +32,8 @@ config :example, ExampleWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :example, Example.Mailer, adapter: Swoosh.Adapters.Local
 
+config :routex, helper_mod_dir: "/tmp"
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.14.41",

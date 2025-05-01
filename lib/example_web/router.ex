@@ -13,6 +13,7 @@ defmodule ExampleWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+    plug :routex
   end
 
   pipeline :api do
@@ -23,7 +24,7 @@ defmodule ExampleWeb.Router do
     pipe_through :browser
 
     preprocess_using ExampleWeb.RoutexBackendAdmin do
-      live "/products/:id", ProductLive.Show, :show
+      live "/products/:id", ProductLive.Show, :show, private: %{HI: :baz}
       live "/products/:id/show/edit", ProductLive.Show, :edit
     end
   end
@@ -34,7 +35,7 @@ defmodule ExampleWeb.Router do
 
       get "/", PageController, :home
 
-      resources "/resource", PageController, as: :resource
+      resources "/resource", PageController, as: :resource, private: %{HI: :bar}
 
       live "/products", ProductLive.Index, :index
 
@@ -43,30 +44,34 @@ defmodule ExampleWeb.Router do
 
       live "/products/:id", ProductLive.Show, :show
       live "/products/:id/show/edit", ProductLive.Show, :edit
+
+      # for i <- 0..400 do
+      #   live "/generated" <> to_string(i), ProductLive.Show, :edit
+      # end
     end
   end
 
-  # Or using CLDR Extension, using 'posts` as route to avoid collisions with `products` from above
-  preprocess_using ExampleWeb.RoutexCldrBackend, alternatives_prefix: false do
-    scope "/#{territory}/cldr/", ExampleWeb, as: :cldr do
-      pipe_through :browser
+  # # Or using CLDR Extension, using 'posts` as route to avoid collisions with `products` from above
+  # preprocess_using ExampleWeb.RoutexCldrBackend, alternatives_prefix: false do
+  #   scope "/#{territory}/cldr/", ExampleWeb, as: :cldr do
+  #     pipe_through :browser
 
-      get "/", PageController, :home
+  #     get "/", PageController, :home
 
-      resources "/resource", PageController, as: :resource
+  #     resources "/resource", PageController, as: :resource
 
-      live "/posts/#{locale}", ProductLive.Index, :index
+  #     live "/posts/#{locale}", ProductLive.Index, :index
 
-      live "/posts/new", ProductLive.Index, :new
-      live "/posts/:id/edit", ProductLive.Index, :edit
+  #     live "/posts/new", ProductLive.Index, :new
+  #     live "/posts/:id/edit", ProductLive.Index, :edit
 
-      live "/posts/:id", ProductLive.Show, :show
-      live "/posts/:id/show/edit", ProductLive.Show, :edit
+  #     live "/posts/:id", ProductLive.Show, :show
+  #     live "/posts/:id/show/edit", ProductLive.Show, :edit
 
-      # live "/#{locale}/products/#{contact}", ProductLive.Index, :index,
-      #  private: %{rtx: %{alternatives_prefix: false}}
-    end
-  end
+  #     # live "/#{locale}/products/#{contact}", ProductLive.Index, :index,
+  #     #  private: %{rtx: %{alternatives_prefix: false}}
+  #   end
+  # end
 
   # Other scopes may use custom stacks.
   # scope "/api", ExampleWeb do

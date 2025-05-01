@@ -19,6 +19,8 @@ config :example, ExampleWeb.Endpoint,
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
+config :routex, helper_mod_dir: "/tmp"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
