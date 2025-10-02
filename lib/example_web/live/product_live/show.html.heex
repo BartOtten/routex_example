@@ -10,12 +10,12 @@
 
 <.list>
   <:item title="Name">{@product.name}</:item>
-  <:item title="Price">{@product.price * (1 - @namespace.discount)}</:item>
+  <:item title="Price">{@product.price * (1 - @route.discount)}</:item>
 </.list>
 
 <.back navigate={~p"/products"}>Back to products</.back>
 
-<.routex_debug url={@url} />
+<.routex_debug url={@url} runtime={@runtime} />
 
 <.modal
   :if={@live_action == :edit}

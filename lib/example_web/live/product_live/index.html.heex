@@ -20,7 +20,7 @@ completely reloaded without diffing. This is the reason it is recommended to use
     {product.name}
   </:col>
   <:col :let={product} label={gettext("Price")}>
-    {product.price * (1 - @route.discount)}
+    {Float.ceil(product.price * (1 - @route.discount), 2)}
   </:col>
   <:action :let={product}>
     <div class="sr-only">

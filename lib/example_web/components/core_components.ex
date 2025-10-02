@@ -561,7 +561,8 @@ defmodule ExampleWeb.CoreComponents do
       <h3 class="font-bold mt-4">Alternatives</h3>
       <p class="mb-2">{gettext("The extension AlternativeGetters makes it easy to link to
         alternative pages.")}</p>
-      <!-- alternatives/1 is located in ExampleWeb.Router.RoutexHelpers aliased as Routes -->
+        <!-- alternatives/1 is located in ExampleWeb.Router.RoutexHelpers aliased as Routes -->
+        <!-- use href instead of navigate to force a full reload -->
       <.link
         :for={alternative <- Routes.alternatives(@url)}
         rel="alternate"

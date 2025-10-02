@@ -33,7 +33,7 @@ msgstr "sluiten"
 msgid "Are you sure?"
 msgstr "Weet u het zeker?"
 
-#: lib/example_web/live/product_live/index.html.heex:112
+#: lib/example_web/live/product_live/index.html.heex:117
 msgid "Automated Helpers"
 msgstr "Geautomatiseerde Helpers"
 
@@ -49,14 +49,6 @@ msgstr "Producten"
 msgid "Name"
 msgstr "Naam"
 
-#: lib/example_web/live/product_live/index.html.heex:181
-msgid "Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`"
-msgstr "Navigeer naar de Europese homepage met `Routes.page_europe_path(@socket, :home)`"
-
-#: lib/example_web/live/product_live/index.html.heex:135
-msgid "Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`"
-msgstr "Navigeer naar de homepage in de huidige scope met `Routes.page_path(@socket, :home)`"
-
 #: lib/example_web/live/product_live/index.html.heex:13
 msgid "New Product"
 msgstr "Nieuw Product"
@@ -65,7 +57,7 @@ msgstr "Nieuw Product"
 msgid "Price"
 msgstr "Prijs"
 
-#: lib/example_web/live/product_live/index.html.heex:45
+#: lib/example_web/live/product_live/index.html.heex:53
 msgid "Routex is fully compatible with Verified Routes"
 msgstr "Routex werkt naadloos samen met Verified Routes"
 
@@ -73,33 +65,25 @@ msgstr "Routex werkt naadloos samen met Verified Routes"
 msgid "Show"
 msgstr "Toon"
 
-#: lib/example_web/live/product_live/index.html.heex:75
+#: lib/example_web/live/product_live/index.html.heex:83
 msgid "You will be redirected to the product path of the current branch."
 msgstr "U wordt doorgestuurd naar de product pagina van de huidige branch."
 
-#: lib/example_web/live/product_live/index.html.heex:61
+#: lib/example_web/live/product_live/index.html.heex:69
 msgid "You will be redirected to the root path of the current branch."
 msgstr "U wordt doorgestuurd naar de  startpagina van de huidige branch."
 
-#: lib/example_web/live/product_live/index.html.heex:102
+#: lib/example_web/live/product_live/index.html.heex:110
 msgid "You will navigate to product '1' in branch 'europe'"
 msgstr "U navigeert naar product 1 in branch ‘europe’"
 
-#: lib/example_web/live/product_live/index.html.heex:89
+#: lib/example_web/live/product_live/index.html.heex:97
 msgid "You will navigate to product '1' in the current branch"
 msgstr "U navigeert naar product 1 in de huidige branch"
 
 #: lib/example_web/controllers/page_html/home.html.heex:52
 msgid "A demo application using"
 msgstr "Deze voorbeeld applicatie maakt gebruik van"
-
-#: lib/example_web/live/product_live/index.html.heex:113
-msgid ""
-"As alternative routes are generated, the default Phoenix Route Helpers now\n"
-"  return values depending on the current 'branch'."
-msgstr ""
-"Omdat er alternatieve routes zijn gegenereerd, retourneren de standaard\n"
-"  Phoenix Route Helpers nu URL’s afhankelijk van de huidige ‘branch’."
 
 #: lib/example_web/controllers/page_html/home.html.heex:52
 msgid "The source code of this example can be found at"
@@ -109,7 +93,7 @@ msgstr "De broncode van dit voorbeeld staat op"
 msgid "View the product page (current route branch)"
 msgstr "Bekijk de product pagina (in de huidige branch)"
 
-#: lib/example_web/components/core_components.ex:594
+#: lib/example_web/components/core_components.ex:562
 msgid ""
 "The extension AlternativeGetters makes it easy to link to\n"
 "    alternative pages."
@@ -121,12 +105,34 @@ msgstr ""
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: lib/example_web/live/product_live/index.html.heex:141
+#: lib/example_web/live/product_live/index.html.heex:47
+msgid "Navigate to homepage in current scope using ~p\"/\""
+msgstr "Navigeer naar de homepage in de huidige scope met ~p”/“"
+
+#: lib/example_web/live/product_live/index.html.heex:119
 msgid ""
-"The helpers generated -alternative-\n"
-"  routes always return a route in the associated branch. Below are the\n"
-"  helpers to link to a page in branch Europe/Netherlands."
+"Phoenix Route Helpers are disabled in this demo. The example\n"
+"     code can be found in the template"
 msgstr ""
-"De gegenereerde helpers voor alternatieve\n"
-" routes retourneren altijd een route in de bijbehorende branch. Hieronder \n"
-" staan de helpers om te linken naar een pagina in de branch Europa/Nederland."
+"Phoenix Route Helpers zijn uitgeschakeld in deze demo.  Voorbeeldcode\n"
+"     Kan gevonden worden in de template"
+
+#: lib/example_web/live/product_live/form_component.ex:26
+msgid "Save Product"
+msgstr "Product opslaan"
+
+#: lib/example_web/live/product_live/form_component.ex:26
+msgid "Saving..."
+msgstr "Opslaan…."
+
+#: lib/example_web/live/product_live/form_component.ex:12
+msgid "Use this form to manage product records in your database."
+msgstr "Gebruik dit formulier om producten te beheren"
+
+#: lib/example_web/live/product_live/form_component.ex:23
+msgid "name"
+msgstr "naam"
+
+#: lib/example_web/live/product_live/form_component.ex:24
+msgid "price"
+msgstr "prijs"

@@ -27,7 +27,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:112
+#: lib/example_web/live/product_live/index.html.heex:117
 #, elixir-autogen, elixir-format
 msgid "Automated Helpers"
 msgstr ""
@@ -47,16 +47,6 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:181
-#, elixir-autogen, elixir-format
-msgid "Navigate to European homepage using `Routes.page_europe_path(@socket, :home)`"
-msgstr ""
-
-#: lib/example_web/live/product_live/index.html.heex:135
-#, elixir-autogen, elixir-format
-msgid "Navigate to homepage in current scope using `Routes.page_path(@socket, :home)`"
-msgstr ""
-
 #: lib/example_web/live/product_live/index.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "New Product"
@@ -67,7 +57,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:45
+#: lib/example_web/live/product_live/index.html.heex:53
 #, elixir-autogen, elixir-format
 msgid "Routex is fully compatible with Verified Routes"
 msgstr ""
@@ -77,22 +67,22 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:75
+#: lib/example_web/live/product_live/index.html.heex:83
 #, elixir-autogen, elixir-format
 msgid "You will be redirected to the product path of the current branch."
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:61
+#: lib/example_web/live/product_live/index.html.heex:69
 #, elixir-autogen, elixir-format
 msgid "You will be redirected to the root path of the current branch."
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:102
+#: lib/example_web/live/product_live/index.html.heex:110
 #, elixir-autogen, elixir-format
 msgid "You will navigate to product '1' in branch 'europe'"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:89
+#: lib/example_web/live/product_live/index.html.heex:97
 #, elixir-autogen, elixir-format
 msgid "You will navigate to product '1' in the current branch"
 msgstr ""
@@ -100,11 +90,6 @@ msgstr ""
 #: lib/example_web/controllers/page_html/home.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "A demo application using"
-msgstr ""
-
-#: lib/example_web/live/product_live/index.html.heex:113
-#, elixir-autogen, elixir-format
-msgid "As alternative routes are generated, the default Phoenix Route Helpers now\n  return values depending on the current 'branch'."
 msgstr ""
 
 #: lib/example_web/controllers/page_html/home.html.heex:52
@@ -117,7 +102,7 @@ msgstr ""
 msgid "View the product page (current route branch)"
 msgstr ""
 
-#: lib/example_web/components/core_components.ex:594
+#: lib/example_web/components/core_components.ex:562
 #, elixir-autogen, elixir-format
 msgid "The extension AlternativeGetters makes it easy to link to\n    alternative pages."
 msgstr ""
@@ -127,7 +112,37 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: lib/example_web/live/product_live/index.html.heex:141
+#: lib/example_web/live/product_live/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "The helpers generated -alternative-\n  routes always return a route in the associated branch. Below are the\n  helpers to link to a page in branch Europe/Netherlands."
+msgid "Navigate to homepage in current scope using ~p\"/\""
+msgstr ""
+
+#: lib/example_web/live/product_live/index.html.heex:119
+#, elixir-autogen, elixir-format
+msgid "Phoenix Route Helpers are disabled in this demo. The example\n     code can be found in the template"
+msgstr ""
+
+#: lib/example_web/live/product_live/form_component.ex:26
+#, elixir-autogen, elixir-format
+msgid "Save Product"
+msgstr ""
+
+#: lib/example_web/live/product_live/form_component.ex:26
+#, elixir-autogen, elixir-format
+msgid "Saving..."
+msgstr ""
+
+#: lib/example_web/live/product_live/form_component.ex:12
+#, elixir-autogen, elixir-format
+msgid "Use this form to manage product records in your database."
+msgstr ""
+
+#: lib/example_web/live/product_live/form_component.ex:23
+#, elixir-autogen, elixir-format
+msgid "name"
+msgstr ""
+
+#: lib/example_web/live/product_live/form_component.ex:24
+#, elixir-autogen, elixir-format
+msgid "price"
 msgstr ""

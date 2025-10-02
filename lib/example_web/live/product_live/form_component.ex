@@ -9,7 +9,7 @@ defmodule ExampleWeb.ProductLive.FormComponent do
     <div>
       <.header>
         {@title}
-        <:subtitle>Use this form to manage product records in your database.</:subtitle>
+        <:subtitle>{gettext("Use this form to manage product records in your database.")}</:subtitle>
       </.header>
 
       <.simple_form
@@ -20,10 +20,10 @@ defmodule ExampleWeb.ProductLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={{f, :name}} type="text" label="name" />
-        <.input field={{f, :price}} type="number" label="price" />
+        <.input field={{f, :name}} type="text" label={gettext("name")} />
+        <.input field={{f, :price}} type="number" label={gettext("price")} />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Product</.button>
+          <.button phx-disable-with={gettext("Saving...")}>{gettext("Save Product")}</.button>
         </:actions>
       </.simple_form>
     </div>

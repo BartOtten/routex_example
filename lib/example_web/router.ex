@@ -20,14 +20,14 @@ defmodule ExampleWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", ExampleWeb, host: "admin.", as: :admin do
-    pipe_through :browser
+  # scope "/", ExampleWeb, host: "admin.", as: :admin do
+  #   pipe_through :browser
 
-    preprocess_using ExampleWeb.RoutexBackendAdmin do
-      live "/products/:id", ProductLive.Show, :show, private: %{HI: :baz}
-      live "/products/:id/show/edit", ProductLive.Show, :edit
-    end
-  end
+  #   preprocess_using ExampleWeb.RoutexBackendAdmin do
+  #     live "/products/:id", ProductLive.Show, :show, private: %{HI: :baz}
+  #     live "/products/:id/show/edit", ProductLive.Show, :edit
+  #   end
+  # end
 
   preprocess_using ExampleWeb.RoutexBackend do
     scope "/", ExampleWeb do
